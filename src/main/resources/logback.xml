@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/base.xml" />
+
+    <property name="logs.file.dir" value="../LOGS" />
+
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <!--<pattern>%d %p (%file:%line\)- %m%n</pattern> -->
+            <!--格式化输出：%d:表示日期 %thread:表示线程名 %-5level:级别从左显示5个字符宽度 %msg:日志消息 %n:是换行符 -->
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-10level %logger{100} - %msg %n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${logs.file.dir}/fire_sz-%d{yyyy-MM-dd}.log
+            </FileNamePattern>
+            <MaxHistory>30</MaxHistory>
+        </rollingPolicy>
+        <encoder>
+            <!--<pattern>%d %p (%file:%line\)- %m%n</pattern> -->
+            <!--格式化输出：%d:表示日期 %thread:表示线程名 %-5level:级别从左显示5个字符宽度 %msg:日志消息 %n:是换行符 -->
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-10level %logger{100} - %msg %n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <MaxFileSize>10MB</MaxFileSize>
+        </triggeringPolicy>
+    </appender>
+
+    <logger name="org.apache" level="warn" />
+    <logger name="org.springframework" level="info" />
+    <logger name="com.ygsoft.lwh" level="debug" />
+
+    <root level="info">
+        <!--注意info级别及以上的才写入到文件中,在appender name="FILE"中有配置-->
+        <!--<appender-ref ref="file" />-->
+    </root>
+
+</configuration>

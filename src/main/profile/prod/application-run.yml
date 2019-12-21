@@ -1,0 +1,50 @@
+# 此文件存放 spring 本身的配置， 消防平台 和 项目自定义配置不要放到这里
+## 主数据库连接,SpringBoot管理.
+spring:
+  datasource:
+    url: jdbc:mysql://10.1.5.112:3306/fire-sz?characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull
+    username: root
+    password: 1234.abcd
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    database: MYSQL
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+  redis:
+    host: 10.1.5.21
+    port: 6379
+    password: zhtv_2017
+    database: 3
+    jedis:
+      pool:
+        max-active: 8
+  data:
+    mongodb:
+      host: 10.51.108.36
+      port: 27017
+      username: admin
+      password: 1234.abcd
+      database: cooco2_dev
+  rabbitmq:
+    host: 10.51.108.45
+    port: 5672
+    username: root
+    password: 123456
+    publisher-confirms: true
+    publisher-returns: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always

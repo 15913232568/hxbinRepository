@@ -1,0 +1,32 @@
+spring:
+  profiles:
+    active: test
+  http:
+    encoding:
+      charset: UTF-8
+      force: true
+      enabled: true
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 100MB
+  session:
+    store-type: redis
+  jmx:
+    default-domain: boot_test
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
+
+server:
+  port: 3377
+  servlet:
+    context-path: /hxb
+    session:
+      timeout: 36000
+  tomcat:
+    max-threads: 0
+    uri-encoding: UTF-8
+
+
